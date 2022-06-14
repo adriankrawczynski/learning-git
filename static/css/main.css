@@ -26,14 +26,14 @@ input {
 
 input:focus {
     outline: none;
-    border: solid 5px #00FFCE;
+    border: solid 5px #ffd700;
 }
 
 #greet {
-    background-color: PaleVioletRed;
+    background-color:	#696969;
     border:  none;
     width:  200px;
-    color: white;
+    color: yellow;
 }
 
 #greet:hover {
