@@ -30,12 +30,12 @@ input:focus {
 }
 
 #greet {
-    background-color:	#696969;
+    background-color:	#C0C0C0;
     border:  none;
     width:  200px;
     color: yellow;
 }
 
 #greet:hover {
-    background-color: MediumVioletRed;
+    background-color: #000000;
 }
