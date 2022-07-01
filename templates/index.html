@@ -1,21 +1,113 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Pozdrowienia</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-</head>
-<body>
-    <img src="https://raw.githubusercontent.com/adriankrawczynski/learning-git/main/gta_sa.jpg">
-    <br>
-    <form action="greet" method="post">
-        {% for message in get_flashed_messages() %}
-             <p>{{ message }}</p>
-         {% endfor %}
-        <br>
-        <input type="text" name="name_input">
-        <br>
-        <input type="submit" value="GREET" id="greet">
-    </form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Spektrograf</title>
+    </head>
+    <style>
+        #container
+        {
+            width: 1400px;
+	        margin-left: auto;
+	        margin-right: auto;
+        }
+        .tytuł
+        {
+            font-family:cursive;
+	        font-size: 16.5px;
+            color:chocolate;
+	        width: 700px;
+	        text-align: center;
+            float:left ;
+        }
+        .przycisk1 
+        {
+            font-family:cursive;
+            margin-top: 45px;
+            margin-right: 20px;
+            width: 250px;
+            font-size: 25px;
+            padding: 10px;
+            color:beige;
+            background-color:chocolate;
+            border: 4px solid beige;
+            border-radius: 25px;
+            float: right;
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .przycisk1:hover
+        {
+            background-color:burlywood ;
+        }
+        .inputy
+        {
+            color: rgb(176, 88, 25);
+            font-family: cursive;
+            float: right;
+            padding: 10px;
+            margin: 10px;
+	        width: 620px;
+	        height: 520px;
+	        background-color:beige;
+	        text-align: center;
+	        padding: 30px;
+        }
+        .wykres
+        {   
+            float: right;
+            padding: 10px;
+            margin: 10px;
+	        width: 620px;
+	        height: 520px;
+	        background-color:beige;
+	        text-align: center;
+	        padding: 30px;
+            color: rgb(176, 88, 25);
+            font-family: cursive;
+        }
+    </style>
+    <body bgcolor="moccasin">
+        <div id="container">
+            <div class = "tytuł">
+                <h1>Wyliczanie masy izotopów z użyciem spektrografu masowego</h1>
+            </div>
+            <button class="przycisk1">
+                <a href="tworcy.html" style="text-decoration:none; color:beige;">Twórcy</a></h1>
+            </button>
+            <button class="przycisk1">
+                <a href="stronaglowna.html" style="text-decoration:none; color:beige;">Strona główna</a></h1>
+            </button>
+            <div class="wykres">
+                    <label><h3>Wynik:</h3></label>
+                    <br>
+                    <img src={{url}} alt="Chart" height="auto" width="100%">
+
+            </div>
+            <div class="inputy">
+                <form action="calculate" method ="post">
+                    <p>
+                    Natężenie pola elektrycznego:
+                    <input type="text" name="natężenie_pola"></p>
+                    <p>
+                    Indukcja pola magnetycznego 1:
+                    <input  type="text" name="indukcja_pola_1"></p>
+                    <p>
+                    Indukcja pola magnetycznego 2:
+                    <input  type="text" name="indukcja_pola_2"></p>
+                    <p>
+                    Prędkość cząstki:
+                    <input  type="text" name="prędkość_cząstki"></p>
+                    <p>
+                    Ładunek cząstki:
+                    <input  type="text" name="ładunek"></p>
+                    <p>
+                    Promień:
+                    <input  type="text" name="promień"></p>
+                    <input class="przycisk1"  type="submit" value="START" id="calculate">
+                </form>
+            </div>
+           
+        </div>
+    </body>
 </html>
