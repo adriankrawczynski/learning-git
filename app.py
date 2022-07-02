@@ -54,7 +54,7 @@ def calculate():
 
             x, y = x , -y - r
     else:
-        x,y = 0, 0
+        x,y = [0, 0],[0,0]
     
     
     plt.plot([-r*0.01, -r*0.005, r*0.005, r*0.01], [0, r*0.005, r*0.005, 0], color='r')
