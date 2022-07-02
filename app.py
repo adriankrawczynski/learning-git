@@ -26,7 +26,7 @@ def calculate():
     v=float(request.form['prędkość_cząstki'])
     q=float(request.form['ładunek'])
     r=float(request.form['promień'])
-    if e==None or b1==None or b2==None or v==None or q==None or r==None:
+    if True:
         return redirect(url_for("licz"))
     else:
         if abs(e - v*b1)< 1 :
