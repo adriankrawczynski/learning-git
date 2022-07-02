@@ -28,7 +28,7 @@ def calculate():
     r=float(request.form['promień'])
     if abs(e - v*b1)< 0.0000000001 :
         masa_cala=abs(q)*b2*r*(10**(-10))/v
-        m=str(round(masa_cala, 4))+" kg"
+        m=str(round(masa_cala, 30))+" kg"
     else:
         m='nie zmierzona, ponieważ nie ma cząstka nie porusza się ruchem jednostajnym'
     flash("masa "+ str(m))\
