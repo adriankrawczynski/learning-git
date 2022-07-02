@@ -1,5 +1,5 @@
 from urllib import request
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash,redirect,url_for
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -26,46 +26,49 @@ def calculate():
     v=float(request.form['prędkość_cząstki'])
     q=float(request.form['ładunek'])
     r=float(request.form['promień'])
-    if abs(e - v*b1)< 1 :
-        masa_cala=abs(q)*b2*r*6.02214*(10**19)/v
-        m=round(masa_cala, 4)
+    if e=='---' or b1=='---' or b2=='---' or v=='---' or q=='---' or r=='---':
+        return redirect(url_for("licz"))
     else:
-        m='nie zmierzona, ponieważ nie ma cząstka nie porusza się ruchem jednostajnym'
-    flash("masa "+ str(m)+" u")\
-    
-    stepsize=0.001*r
-    
-    if q > 0:
-        x = np.arange(0, r+stepsize, stepsize)
-        y = np.sqrt(r**2 - x**2)
+        if abs(e - v*b1)< 1 :
+            masa_cala=abs(q)*b2*r*6.02214*(10**19)/v
+            m=round(masa_cala, 4)
+        else:
+            m='nie zmierzona, ponieważ nie ma cząstka nie porusza się ruchem jednostajnym'
+        flash("masa "+ str(m)+" u")\
+        
+        stepsize=0.001*r
+        
+        if q > 0:
+            x = np.arange(0, r+stepsize, stepsize)
+            y = np.sqrt(r**2 - x**2)
 
-        x = np.concatenate([x,x[::-1]])
+            x = np.concatenate([x,x[::-1]])
 
-        y = np.concatenate([y,-y[::-1]])
+            y = np.concatenate([y,-y[::-1]])
 
-        x, y = x, y + r
-    else:
-        x = np.arange(0, r+stepsize, stepsize)
-        y = np.sqrt(r**2 - x**2)
+            x, y = x, y + r
+        else:
+            x = np.arange(0, r+stepsize, stepsize)
+            y = np.sqrt(r**2 - x**2)
 
-        x = np.concatenate([x,x[::-1]])
+            x = np.concatenate([x,x[::-1]])
 
-        y = np.concatenate([y,-y[::-1]])
+            y = np.concatenate([y,-y[::-1]])
 
-        x, y = x , -y - r
-    
-    
-    plt.plot([-r*0.01, -r*0.005, r*0.005, r*0.01], [0, r*0.005, r*0.005, 0])
-    plt.plot([-r*2, r*2], [0, 0])
-    plt.plot(y, x)
-    plt.grid(True)
-    plt.xlabel("x cm")
-    plt.ylabel("y cm")
-    plt.title("Wykres ruchu czastki w polu magnetycznym ")
-    plt.savefig('./static/plot.png')
-    plt.close("all")
+            x, y = x , -y - r
+        
+        
+        plt.plot([-r*0.01, -r*0.005, r*0.005, r*0.01], [0, r*0.005, r*0.005, 0])
+        plt.plot([-r*2, r*2], [0, 0])
+        plt.plot(y, x)
+        plt.grid(True)
+        plt.xlabel("x cm")
+        plt.ylabel("y cm")
+        plt.title("Wykres ruchu czastki w polu magnetycznym ")
+        plt.savefig('./static/plot.png')
+        plt.close("all")
 
-    return render_template('index.html', url="plot.png")
+        return render_template('index.html', url="plot.png")
  
 if __name__ == '__main__':
    app.run(port=5001)
