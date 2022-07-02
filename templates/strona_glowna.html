@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Spektrograf</title>
+        <title>Spektrometr</title>
     </head>
     <style>
         #container
@@ -75,21 +75,32 @@
     <body bgcolor="moccasin">
         <div id="container">
             <div class = "tytuł">
-                <h1>Wyliczanie masy izotopów z użyciem spektrografu masowego</h1>
+                <h1>Wyliczanie masy izotopów z użyciem spektrometru masowego</h1>
             </div>
             <div class="przycisk1">
-                <a href="https://projektit.herokuapp.com/tworcy" style="text-decoration:none; color:beige;">Twórcy</a></h1>
+                <a href={{url_for('creators')}} style="text-decoration:none; color:beige;">Twórcy</a></h1>
             </div>
             <div class="opis">
-                <h1>Opis projektu:</h1>
-                To jest bardzo dobre miejsce na ładny opis naszego tematu, właśnie tutaj
-                możemy opisać to fizyczne coś czego wykresiki za chwilę będziemy robić
-                <h1>Przeznaczenie strony:</h1>
-                Tutaj natomiast możemy wrzucć opis przeznaczenia naszej strony
-                    cokolwiek to znaczy. Czy może chodzi o to, że ma ona pokazywać nasze wykresy?
-                    Ja bym powiedziała, że jej przeznaczeniem jest zdobycie dla nas wystarczająco punktów do zaliczenia przedmiotu.
+                <h1>Opis projektu i przeznaczenie strony: </h1>
+                Spektrometria mas narodziła się w latach 1899–1913, w których fizycy zbudowali urządzenia pozwalające wyznaczyć masę,
+                 a właściwie stosunek masy do ładunku elektrycznego m/q. 
+                 Przedstawmy krótko zasadę działania spektrometru: wiązka jonów trafia do selektora prędkości,
+                  którym jest komora ze skrzyżowanymi polami:
+                magnetycznym o indukcji B i elektrycznym o  natężeniu E. Tutaj dokonuje się selekcja
+cząstek - z komory wyjdą tylko te cząstki, które poruszają się ruchem jednostajnym
+prostoliniowym, warunkiem takiego ruchu jest równowaga działających na jon sił elektrycznej i magnetycznej (v=E/B).
+Po opuszczeniu selektora, jon dodatni wpada w obszar jednorodnego pola magnetycznego
+o indukcji B_0. Cząstka wpada dokładnie prostopadle do linii tego pola, a więc siła
+magnetyczna pełni rolę siły dośrodkowej i zakrzywia tor cząstki, która ostatecznie trafia na
+kliszę fotograficzną, pozostawiając swój ślad. Siła magnetyczna jest tutaj siłą dośrodkową, co
+możemy wyrazić jako mv^2/r=qvB_0. Korzystając z tej równości oraz z v=E/B możemy wyznaczyć wzór na masę 
+                <p><img src={{url_for('static', filename="wzor.png")}} width="7%" height="7%"> </p>
+                Po kliknięciu przycisku Start umieszczonego poniżej przenosimy sę do podstrony,
+                na której wprowadzamy wartości natężenia pola elektrycznego (E), indukcji pola magnetycznego 1 (B_0), indukcji pola magnetycznego 2 (B), prędkości cząstki (v),
+                ładunku cząstki (q) oraz promienia(r) i korzystając z przedstawionego powyżej wzoru otrzymujemy obliczoną masę (m) cząstki oraz schemat przedstawiający jony poruszające  
+                się w obszarze roboczym spektrometru.
                 <div class="przycisk2">
-                    <a href="https://projektit.herokuapp.com/plot" style="text-decoration:none; color:beige;">Start</a></h1>
+                    <a href={{url_for('licz')}} style="text-decoration:none; color:beige;">Start</a></h1>
                 </div>
             </div>
         </div>

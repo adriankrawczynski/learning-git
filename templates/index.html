@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Spektrograf</title>
+        <title>Spektrometr</title>
     </head>
     <style>
         #container
@@ -70,40 +70,45 @@
     <body bgcolor="moccasin">
         <div id="container">
             <div class = "tytuł">
-                <h1>Wyliczanie masy izotopów z użyciem spektrografu masowego</h1>
+                <h1>Wyliczanie masy izotopów z użyciem spektrogrometru masowego</h1>
             </div>
             <button class="przycisk1">
-                <a href="https://projektit.herokuapp.com/tworcy" style="text-decoration:none; color:beige;">Twórcy</a></h1>
+                <a href={{url_for('creators')}} style="text-decoration:none; color:beige;">Twórcy</a></h1>
             </button>
             <button class="przycisk1">
-                <a href="https://projektit.herokuapp.com" style="text-decoration:none; color:beige;">Strona główna</a></h1>
+                <a href={{url_for('main')}} style="text-decoration:none; color:beige;">Strona główna</a></h1>
             </button>
             <div class="wykres">
                     <label><h3>Wynik:</h3></label>
                     <br>
-                    <img src={{url}} alt="Chart" height="auto" width="100%">
+                    <!-- <img src={{url}} alt="Chart" height="auto" width="100%"> -->
+                    <img src={{url_for('static', filename=url)}} alt="Chart" height="auto" width="100%">
+
 
             </div>
             <div class="inputy">
-                <form action="calculate" method ="post">
+                <form action="wynik" method ="post">
                     <p>
                     Natężenie pola elektrycznego:
-                    <input type="text" name="natężenie_pola"></p>
+                    <input type="text" name="natężenie_pola">10^5 N/C</p>
                     <p>
                     Indukcja pola magnetycznego 1:
-                    <input  type="text" name="indukcja_pola_1"></p>
+                    <input  type="text" name="indukcja_pola_1">T</p>
                     <p>
                     Indukcja pola magnetycznego 2:
-                    <input  type="text" name="indukcja_pola_2"></p>
+                    <input  type="text" name="indukcja_pola_2">T</p>
                     <p>
                     Prędkość cząstki:
-                    <input  type="text" name="prędkość_cząstki"></p>
+                    <input  type="text" name="prędkość_cząstki">10^5 m/s</p>
                     <p>
                     Ładunek cząstki:
-                    <input  type="text" name="ładunek"></p>
+                    <input  type="text" name="ładunek">C</p>
                     <p>
                     Promień:
-                    <input  type="text" name="promień"></p>
+                    <input  type="text" name="promień">cm</p>
+                    {%for message in get_flashed_messages()%}
+                        <p> {{message}} </p>
+                    {% endfor %}
                     <input class="przycisk1"  type="submit" value="START" id="calculate">
                 </form>
             </div>
