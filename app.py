@@ -19,9 +19,8 @@ def licz():
     return render_template('index.html')
 
 @app.route('/wynik', methods=["POST","GET"])
-def calculate():
-    if request.method == "POST":
-
+def calculate():   
+    if request.method == 'POST':
         e=float(request.form['natężenie_pola'])
         b1=float(request.form['indukcja_pola_1'])
         b2=float(request.form['indukcja_pola_2'])
@@ -34,9 +33,9 @@ def calculate():
         else:
             m='nie zmierzona'
         flash("masa to "+ str(m)+" u")\
-        
+            
         stepsize=0.01*r
-        
+            
         if q > 0:
             x = np.arange(0, r+stepsize, stepsize)
             y = np.sqrt(r**2 - x**2)
@@ -55,14 +54,13 @@ def calculate():
             y = np.concatenate([y,-y[::-1]])
 
             x, y = x , -y - r
-        
+            
         plt.plot(y, x)
         plt.savefig('./static/plot.png')
         plt.close("all")
 
         return render_template('index.html', url="plot.png")
-    else:
-        return render_template('index.html')
+    
  
 if __name__ == '__main__':
    app.run(port=5001)
